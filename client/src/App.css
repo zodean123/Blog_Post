@@ -1,0 +1,24 @@
+body{
+    color:#222;
+}
+main{
+    padding:10px;
+    max-width: 600px;
+    margin:0 auto;
+}
+header{
+    display: flex;
+    justify-content: space-between;
+
+}
+header a{
+    text-decoration: none;
+    color:inherit;
+}
+header a.logo{
+    font-weight: bold;
+}
+header nav{
+    display: flex;
+    gap:15px;
+}
