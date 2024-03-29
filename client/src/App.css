@@ -3,13 +3,14 @@ body{
 }
 main{
     padding:10px;
-    max-width: 600px;
+    max-width: 800px;
     margin:0 auto;
 }
 header{
     display: flex;
     justify-content: space-between;
-
+    align-items: center;
+    margin-bottom: 50px;
 }
 header a{
     text-decoration: none;
@@ -17,8 +18,37 @@ header a{
 }
 header a.logo{
     font-weight: bold;
+    font-size: 1.5rem;
 }
 header nav{
     display: flex;
     gap:15px;
+}
+div.post{
+    display: grid;
+    grid-template-columns: 0.9fr 1.1fr;
+    gap:30px;
+    margin-bottom: 45px;
+}
+img{
+    width: 100%;
+}
+div.post div.content h2{
+    margin:0;
+    font-size: 1.6rem;
+}
+div.post p.info{
+    margin:6px 0;
+    color:#888;
+    font-size:0.7rem;
+    font-weight: bold;
+     display: flex;
+     gap:10px;
+}
+div.post p.info a.author{
+    color:#333;
+}
+div.post p.summary{
+    margin:10px 0;
+    line-height: 1.5rem;
 }
