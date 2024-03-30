@@ -1,27 +1,20 @@
 import './App.css';
-import Post from './post';
-import  Header  from './header';
-import  {Route, Routes} from 'react-router-dom';
-import { Discovery } from 'aws-sdk';
+import IndexPage from './pages/indexpage';
+import { Route, Routes } from 'react-router-dom';
+import Layout from './layout';
+import Login from './pages/login';
+
+
 function App() {
   return (
-<Routes>
-  <Route index element = {
-<main>
-  <Header/>
-  <Post/>
-  <Post/>
-  <Post/>
-</main>
-  }/>
-<Route path={'/login'} element = {
-  <div>Login</div>
-}/>
-<Route path={'/register'} element = {
-  <div>Register</div>
-}/>
-</Routes>
-  
+    <Routes>
+      <Route path='/' element={<Layout />}>
+        <Route index element={<IndexPage/>} />
+        <Route path="/login" element={<Login/>} />
+        <Route path={'/register'} element={<div>Register</div>} />
+      </Route>
+    </Routes>
+
   );
 }
 
