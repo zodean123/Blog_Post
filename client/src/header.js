@@ -4,7 +4,7 @@ const header = () => {
   return (
     <>
     <header>
-    <Link to="/" >MyBlog</Link>
+    <Link to="/" className = "logo">MyBlog</Link>
     <nav>
       <Link to="/login">Login</Link>
       <Link to="/register">Register</Link>
