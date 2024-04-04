@@ -6,7 +6,7 @@ export default function RegisterPage() {
   
   async function register(e){
     e.preventDefault();
-  const response = await  fetch('http://localhost:4000/register',{
+  const response = await fetch('http://localhost:4000/register',{
      method:'POST',
       headers:{
         'Content-type':'application/json',
@@ -16,7 +16,7 @@ export default function RegisterPage() {
         password,
       })
     })
-    const data  = await response.json()
+    const data = await response.json()
 
     console.log(data);
   }

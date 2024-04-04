@@ -10,17 +10,15 @@ app.use(express.json());
 
 mongoose.connect('mongodb://localhost:27017/user')
 app.post('/register',async (req,res)=>{
-    console.log(req.body);
     try{
         const user = await User.create({
             username:req.body.username,
             password:req.body.password,
         })
-        res.json({status:'ok'});
-        
+        res.json(user);
     }
     catch(err){
-        res.json({status:'err'});
+        res.status(400).json(err);
     }
  
 })
