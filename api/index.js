@@ -3,7 +3,12 @@ const app = express();
 const cors = require('cors');
 const User = require("./models/user.js");
 const mongoose = require('mongoose');
+const bcrypt = require('bcryptjs');
 const PORT = 4000;
+
+const salt = bcrypt.genSaltSync(10);
+
+
 
 app.use(cors());
 app.use(express.json());
@@ -11,9 +16,10 @@ app.use(express.json());
 mongoose.connect('mongodb://localhost:27017/user')
 app.post('/register',async (req,res)=>{
     try{
+        const {username,password} = req.body;
         const user = await User.create({
-            username:req.body.username,
-            password:req.body.password,
+            username:username,
+            password:bcrypt.hashSync(password,salt),
         })
         res.json(user);
     }
