@@ -15,6 +15,8 @@ const secret = 'asdfasdgouhfgjhaslfjasdf';
 
 app.use(cors({credentials:true,origin:'http://localhost:3000'}));
 app.use(express.json());
+app.use(cookieParser());
+
 
 mongoose.connect('mongodb://localhost:27017/user')
 app.post('/register',async (req,res)=>{
@@ -47,6 +49,10 @@ app.post('/login',async (req,res)=>{
   }
 })
 
+
+app.get('/profile',(req,res)=>{
+    res.json(req.cookies);
+})
 
 
 app.listen(PORT, () => {
