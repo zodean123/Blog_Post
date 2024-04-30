@@ -1,39 +1,46 @@
-import React, { useEffect, useState } from 'react';
-import {Link} from 'react-router-dom';
+import {Link} from "react-router-dom";
+import {useContext, useEffect} from "react";
+import {UserContext} from "./UserContext";
 
-
-
-function Header() {
-  const [curLogin, setCurLogin] = useState()
+export default function Header() {
+  const {setUserInfo,userInfo} = useContext(UserContext);
   useEffect(() => {
-    const token = window.localStorage.getItem('token');
-    console.log(token)
-    setCurLogin(token);
-  }, []); 
+    fetch('http://localhost:4000/profile', {
+      credentials: 'include',
+    }).then(response => {
+      response.json().then(userInfo => {
+        setUserInfo(userInfo);
+      });
+    });
+  }, []);
 
-  useEffect(() => {
-    setTimeout(() => {
-      console.log(curLogin);
-    }, 3000);
-  }, [curLogin]); 
-  
+  function logout() {
+    fetch('http://localhost:4000/logout', {
+      credentials: 'include',
+      method: 'POST',
+    });
+    setUserInfo(null);
+  }
+
+  const username = userInfo?.username;
+
   return (
-    <>
     <header>
-    <Link to="/" className = "logo">MyBlog</Link>
-    <nav>
-      <Link to="/login">
-        {
-          curLogin ? "Logout" : 'Login'
-        }
-        
-        </Link>
-      <Link to="/register">Register</Link>
-    </nav>
-  </header>
-  </>
-  )
+      <Link to="/" className="logo">MyBlog</Link>
+      <nav>
+        {username && (
+          <>
+            <Link to="/create">Create new post</Link>
+            <a onClick = {logout}>Logout ({username})</a>
+          </>
+        )}
+        {!username && (
+          <>
+            <Link to="/login">Login</Link>
+            <Link to="/register">Register</Link>
+          </>
+        )}
+      </nav>
+    </header>
+  );
 }
-
-export default Header
-
