@@ -78,10 +78,18 @@ button{
     background-color: #555;
     border:0;
     color:#fff;
+    background-color: blue;
+    font-size:1 rem;
     border-radius: 5px;
     padding:10px;
     cursor: pointer;
 }
-form h1{
+form.login h1,form.register h1{
     text-align: center;
+}
+.PostButton{
+margin-top: 20px;
+color:white;
+background-color:blue;
+font-size: 1rem;
 }
