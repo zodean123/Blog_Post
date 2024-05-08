@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const cors = require('cors');
 const User = require("./models/user.js");
+const Post = require('./models/Post.js');
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 const PORT = 4000;
@@ -19,7 +20,7 @@ app.use(cors({credentials:true,origin:'http://localhost:3000'}));
 app.use(express.json());
 app.use(cookieParser());
 
-mongoose.connect('mongodb://localhost:27017/user')
+mongoose.connect('mongodb://localhost:27017/test')
 app.post('/register',async (req,res)=>{
     try{
         const {username,password} = req.body;
@@ -67,13 +68,22 @@ app.get('/profile', (req,res) => {
     res.cookie('token', '').json('ok');
   });
   
-  app.post('/post',uploadMiddleWare.single('file'), (req,res)=>{
+  app.post('/post',uploadMiddleWare.single('file'),async (req,res)=>{
     const {originalname,path} = req.file;
     const parts = originalname.split('.');
     const ext = parts[parts.length - 1];
     const newPath = path+'.'+ext;
     fs.renameSync(path, newPath);
-   res.json({ext});
+
+    const {title,summary,content} = req.body;
+
+    const postDoc = await Post.create({
+     title:title,
+     summary:summary,
+     content:content,
+     cover:newPath,
+    });
+   res.json(postDoc);
   })
 
 
