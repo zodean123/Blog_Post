@@ -19,6 +19,7 @@ header{
 header a{
     text-decoration: none;
     color:inherit;
+    cursor: pointer;
 }
 header a.logo{
     font-weight: bold;
@@ -36,6 +37,10 @@ div.post{
 }
 img{
     width: 100%;
+}
+div.post div.texts a{
+    text-decoration: none;
+    color:inherit;
 }
 div.post div.content h2{
     margin:0;
