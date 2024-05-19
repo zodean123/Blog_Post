@@ -3,40 +3,83 @@
 }
 
 body{
-    color:#222;
+    background-color: #EEEEEE;
+
 }
 main{
-    padding:10px;
-    max-width: 700px;
+    padding:0;
     margin:0 auto;
 }
 header{
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
     margin-bottom: 50px;
+    background-color: #EEEEEE;
+    padding: 20px;
+ box-shadow: 5px 5px 5px #888888;
+
 }
+
 header a{
     text-decoration: none;
-    color:inherit;
+    color:#4793AF;
     cursor: pointer;
 }
+
 header a.logo{
     font-weight: bold;
     font-size: 1.5rem;
+    font-size: 2rem;
+    transition: transform 0.5s ease;
 }
+
+header a.logo:hover {
+    animation: coolAnimation 1s ease infinite; /* Apply the animation on hover */
+  }
+@keyframes coolAnimation {
+    0% {
+      transform: rotate(0deg);
+    }
+    25% {
+      transform: rotate(10deg);
+    }
+    50% {
+      transform: rotate(-10deg);
+    }
+    75% {
+      transform: rotate(10deg);
+    }
+    100% {
+      transform: rotate(0deg);
+    }
+  }
+
 header nav{
     display: flex;
     gap:15px;
 }
-div.post{
-    display: grid;
-    grid-template-columns: 0.9fr 1.1fr;
-    gap:30px;
-    margin-bottom: 45px;
+.grid-container{
+    display: flex;
+    justify-content: center;
 }
+.post{
+    max-width: 400px;
+    gap: 30px;
+    margin: 10px 10px 10px 10px;
+    padding: 20px;
+    background-color: #fff; 
+    border-radius: 20px; 
+    box-shadow: 0 2px 5px #FFDA78;
+    transition: transform 0.2s ease-in-out;
+  }
+  div.post:hover{
+    transform: scale(1.05); 
+  }
+
 img{
-    width: 100%;
+    width:100%;
+    border-radius: ;
 }
 div.post div.texts a{
     text-decoration: none;
@@ -51,7 +94,7 @@ div.post p.info{
     color:#888;
     font-size:0.7rem;
     font-weight: bold;
-     display: flex;
+    display: flex;
      gap:10px;
 }
 div.post p.info a.author{
@@ -60,6 +103,7 @@ div.post p.info a.author{
 div.post p.summary{
     margin:10px 0;
     line-height: 1.5rem;
+    overflow-y: hidden;
 }
 
 form.login form.register{
@@ -90,11 +134,87 @@ button{
     cursor: pointer;
 }
 form.login h1,form.register h1{
-    text-align: center;
+    text-align:center;
 }
 .PostButton{
 margin-top: 20px;
 color:white;
-background-color:blue;
+background-color:#FF7F3E;
 font-size: 1rem;
+}
+
+.ViewPost{
+    width:10%;
+    background-color: #FF7F3E;
+}
+.DeletePost{
+    width:10%;
+    background-color: #003285;
+}
+.indexbtn{
+    display: flex;
+    justify-content: center;
+   gap: 20px;
+   margin: 30px 20px 30px 30px;
+    margin-bottom: 40px;
+    
+}
+
+div.post-page div.image{
+    max-height:500px;
+    display: flex;
+    overflow:hidden;
+    max-width: 700px;
+    margin: auto;
+}
+div.post-page div.image img{
+    object-fit: cover;
+    object-position: center center;
+    width: 100%;
+}
+div.post-page a{
+    color:#333;
+    text-decoration: underline;
+}
+div.post-page h1{
+    text-align: center;
+    margin: 10px 0 5px;
+}
+div.post-page time{
+    text-align: center;
+    display: block;
+    font-size:1rem;
+    color:#aaa;
+    margin: 10px 0;
+}
+div.post-page div.author{
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: .7rem;
+    font-weight: bold;
+}
+div.content p{
+    line-height: 1.7rem;
+    text-align: center;
+}
+div.content li{
+    margin-bottom: 10px;
+}
+div.edit-row{
+    text-align: center;
+    margin-bottom: 20px;
+}
+div.post-page a.edit-btn{
+    background-color:#FF7F3E ;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    color: #fff;
+    padding:15px 30px;
+    border-radius: 5px;
+    text-decoration: none;
+}
+.CreatePost{
+    margin: auto;
+    max-width: 1000px;
 }

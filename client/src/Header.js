@@ -25,6 +25,7 @@ export default function Header() {
   const username = userInfo?.username;
 
   return (
+    <div className="navbar">
     <header>
       <Link to="/" className="logo">MyBlog</Link>
       <nav>
@@ -42,5 +43,9 @@ export default function Header() {
         )}
       </nav>
     </header>
+
+
+    </div>
+
   );
 }

@@ -39,8 +39,11 @@ export default function IndexPage() {
       {posts.length > 0 && posts.map(post => (
         <div key={post._id}>
           <Post {...post} />
-          <button onClick={() => navigate(`/post/${post._id}`)}>View Post</button>
-          <button onClick={() => handleDelete(post._id, post.author._id)}>Delete Post</button>
+          <div className="indexbtn">
+
+            <button className="ViewPost" onClick={() => navigate(`/post/${post._id}`)}>View Post</button>
+          <button className="DeletePost" onClick={() => handleDelete(post._id, post.author._id)}>Delete Post</button>
+          </div>
         </div>
       ))}
     </>

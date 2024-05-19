@@ -6,7 +6,9 @@ const Post = ({ _id, title, summary, cover, createdAt, author }) => {
   const currentDate = moment(createdAt).format('MMMM Do YYYY, h:mm:ss a');
   
   return (
-    <div className="post">
+    <div className="grid-container">
+
+<div className="post">
       <div className="image">
         <Link to={`/post/${_id}`}>
           <img src={`http://localhost:4000/${cover}`} alt="" />
@@ -22,7 +24,11 @@ const Post = ({ _id, title, summary, cover, createdAt, author }) => {
         </p>
         <p className="summary">{summary}</p>
       </div>
+      
     </div>
+
+    </div>
+   
   );
 };
 
