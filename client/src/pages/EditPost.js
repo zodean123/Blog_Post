@@ -23,6 +23,9 @@ export default function EditPost(){
   }, []);
 
 
+ 
+
+
 
  async function updatePost(ev) {
     ev.preventDefault();
@@ -37,14 +40,12 @@ export default function EditPost(){
     const response =  await fetch('http://localhost:4000/post',{
       method:'PUT',
       body:data,
-      credentials: 'include',
-
+      credentials:'include',
     });
     if (response.ok) {
       setRedirect(true);
     }
   }
-
   if(redirect){
     return <Navigate to={'/post/'+id}/>
   }

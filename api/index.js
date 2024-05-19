@@ -101,40 +101,53 @@ app.get('/profile', (req,res) => {
   
   });
 
-  app.put('/post',uploadMiddleWare.single('file'), async (req,res) => {
+  app.put('/post', uploadMiddleWare.single('file'), async (req, res) => {
     let newPath = null;
     if (req.file) {
-      const {originalname,path} = req.file;
+      const { originalname, path } = req.file;
       const parts = originalname.split('.');
       const ext = parts[parts.length - 1];
-      newPath = path+'.'+ext;
+      newPath = `${path}.${ext}`;
       fs.renameSync(path, newPath);
     }
   
-    const {token} = req.cookies;
-    jwt.verify(token, secret, {}, async (err,info) => {
-      if (err) throw err;
-      const {id,title,summary,content} = req.body;
-      const postDoc = await Post.findById(id);
-      const isAuthor = JSON.stringify(postDoc.author) === JSON.stringify(info.id);
-      res.json({isAuthor,postDoc,info})
-      if (!isAuthor) {
-        return res.status(400).json('you are not the author');
-      }
-      console.log(postDoc);
-      await postDoc.updateOne({
-        title,
-        summary,
-        content,
-        cover: newPath ? newPath : postDoc.cover,
-      });
+    const { token } = req.cookies;
+    
+    jwt.verify(token, secret, {}, async (err, info) => {
+      if (err) return res.status(401).json({ error: 'Unauthorized' });
   
-
-    res.json(postDoc);
-});
-
-     
+      const { id, title, summary, content } = req.body;
+  
+      try {
+        const postDoc = await Post.findById(id);
+  
+        if (!postDoc) {
+          return res.status(404).json({ error: 'Post not found' });
+        }
+  
+        const isAuthor = JSON.stringify(postDoc.author) === JSON.stringify(info.id);
+  
+        if (!isAuthor) {
+          return res.status(403).json({ error: 'You are not the author' });
+        }
+  
+        await postDoc.updateOne({
+          title,
+          summary,
+          content,
+          cover: newPath ? newPath : postDoc.cover,
+        });
+  
+        return res.json(postDoc);
+      } catch (error) {
+        console.error('Error updating post:', error);
+        if (!res.headersSent) {
+          return res.status(500).json({ error: 'Internal Server Error' });
+        }
+      }
     });
+  });
+  
   
   
 
