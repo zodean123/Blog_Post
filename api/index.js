@@ -148,7 +148,43 @@ app.get('/profile', (req,res) => {
     });
   });
   
+  app.delete('/post/:id', async (req, res) => {
+    const { id } = req.params;
+    const { token } = req.cookies;
   
+    jwt.verify(token, secret, {}, async (err, info) => {
+      if (err) return res.status(401).json({ error: 'Unauthorized' });
+  
+      try {
+        const postDoc = await Post.findById(id);
+  
+        if (!postDoc) {
+          return res.status(404).json({ error: 'Post not found' });
+        }
+  
+        const isAuthor = JSON.stringify(postDoc.author) === JSON.stringify(info.id);
+  
+        if (!isAuthor) {
+          return res.status(403).json({ error: 'You are not the author' });
+        }
+  
+        await postDoc.deleteOne();
+  
+        return res.json({ message: 'Post deleted successfully', redirect: '/' });
+      } catch (error) {
+        console.error('Error deleting post:', error);
+        if (!res.headersSent) {
+          return res.status(500).json({ error: 'Internal Server Error' });
+        }
+      }
+    });
+  });
+
+
+
+
+
+
   
 
   app.get('/post', async (req,res) => {
