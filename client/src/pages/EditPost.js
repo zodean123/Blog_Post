@@ -52,7 +52,9 @@ export default function EditPost(){
 
 
   return (
-    <form className="CreatePost" onSubmit={updatePost}>
+    <div className="edit-form">
+    <form className="Editpost" onSubmit={updatePost}>
+      <h1 className="edit-heading">Edit this post</h1>
       <input type="title"
              placeholder={'Title'}
              value={title}
@@ -66,5 +68,7 @@ export default function EditPost(){
       <Editor onChange={setContent} value={content} />
       <button className="PostButton" style={{marginTop:'5px'}}>Update post</button>
     </form>
+    </div>
+   
   );
 }

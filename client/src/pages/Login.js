@@ -29,17 +29,21 @@ export default function LoginPage() {
     return <Navigate to={'/'} />
   }
   return (
-    <form className="login" onSubmit={login}>
+    <div className="login-form">
+  <form className="login" onSubmit={login}>
       <h1>Login</h1>
       <input type="text"
-             placeholder="username"
+             placeholder="Enter your name"
              value={username}
              onChange={ev => setUsername(ev.target.value)}/>
       <input type="password"
-             placeholder="password"
+             placeholder="Confirm Password"
              value={password}
              onChange={ev => setPassword(ev.target.value)}/>
       <button>Login</button>
     </form>
+
+    </div>
+  
   );
 }

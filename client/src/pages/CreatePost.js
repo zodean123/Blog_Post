@@ -32,13 +32,17 @@ export default function CreatePost(){
     }
     return(
         <>
+        <div className="post-div">
         <form className ="CreatePost" onSubmit={createNewPost}>
+            <h1>Create a New Post</h1>
             <input type="title" placeholder={'Title'} value = {title} onChange = {ev=>setTitle(ev.target.value)}/>
             <input type = "summary" placeholder="Summary" value={summary} onChange={ev=>setSummary(ev.target.value)}/>
             <input type="file" placeholder='File' onChange={ev=>setFiles(ev.target.files)}/>
             <Editor value={content} onChange={setContent} />
             <button className="PostButton">Create Post</button>
         </form>
+        </div>
+        
         </>
     )
 }
