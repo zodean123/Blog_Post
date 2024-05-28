@@ -21,7 +21,7 @@ app.use(express.json());
 app.use(cookieParser());
 app.use('/uploads',express.static(__dirname+'/uploads'));
 
-mongoose.connect('mongodb://localhost:27017/test');
+mongoose.connect('mongodb+srv://dipanmallick7085:dipanb660b6@cluster0.8oejhss.mongodb.net/');
 
 app.post('/register',async (req,res)=>{
     try{
