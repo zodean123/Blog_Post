@@ -69,6 +69,7 @@ header nav{
 .post{
     max-width: 400px;
     gap: 30px;
+    
     margin: 10px 10px 10px 10px;
     padding: 20px;
     background-color: #fff; 
@@ -87,12 +88,12 @@ header nav{
    
   }
   div.post:hover{
-    transform:scale(1.2); 
+    transform:scale(1.05); 
   }
 
 img{
-    width:100%;
-    border-radius: ;
+    width:290px;
+  height: 290px;
 }
 div.post div.texts a{
     text-decoration: none;

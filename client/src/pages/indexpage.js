@@ -52,7 +52,7 @@ export default function IndexPage() {
         <div className="modal" style={modalStyle}>
           <div className="modal-content">
             <span className="close" onClick={() => setShowModal(false)}>&times;</span>
-            <p>You are not the author.</p>
+            <p>Either not logged in or you are not the author!!</p>
           </div>
         </div>
       )}
